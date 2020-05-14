@@ -27,6 +27,11 @@ const User = new mongoose.Schema(
     cover: {
       type: String,
     },
+    verifiedAccount: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
     tweets: [
       {
         type: mongoose.Schema.Types.ObjectId,
