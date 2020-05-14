@@ -34,19 +34,6 @@ router.post("/users/me/update", auth, async (req, res) => {
 
         user.cover = filenameCover;
       }
-
-      //Use the mv() method to place the file in upload directory (i.e. "uploads")
-
-      // send response
-      // res.send({
-      //   status: true,
-      //   message: "File is uploaded",
-      //   data: {
-      //     name: avatar.name,
-      //     mimetype: avatar.mimetype,
-      //     size: avatar.size,
-      //   },
-      // });
     }
 
     user.save();
@@ -60,4 +47,3 @@ router.post("/users/me/update", auth, async (req, res) => {
 });
 
 module.exports = router;
-//https://attacomsian.com/blog/uploading-files-nodejs-express
