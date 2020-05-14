@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const morgan = require("morgan");
 
+const middlewares = require("./middlewares");
+
 mongoose.connect(
   process.env.DB_URL,
   {
@@ -41,6 +43,16 @@ app.use(
     origin: process.env.CORS_ORIGIN,
   })
 );
+
+/**
+ * Middlewares
+ */
+
+// Middleware recurso não encontrado
+app.use(middlewares.notFound);
+
+// Middleware de tratamento de erro
+app.use(middlewares.errorHandle);
 
 app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
