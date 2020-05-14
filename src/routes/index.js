@@ -9,7 +9,6 @@ const router = new Router();
 
 router.use(auth.register);
 router.use(auth.login);
-router.use(auth.logout);
 router.use(profiler.update);
 router.use(profiler.tweets);
 router.use(follow.update);

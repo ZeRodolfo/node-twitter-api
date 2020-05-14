@@ -6,7 +6,7 @@ const User = require("../../models/User");
 
 const router = new Router();
 
-// Atualizar follow específico (like/unlike)
+// Atualizar follow específico
 router.put("/follows/:id", auth, async (req, res) => {
   const { id } = req.params;
 

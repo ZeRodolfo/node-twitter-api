@@ -7,12 +7,10 @@ const User = require("../../models/User");
 const router = new Router();
 
 // listar follows
-router.get("/follows", auth, async (req, res, next) => {
+router.get("/follows", auth, async (req, res) => {
   try {
     const currentUser = await User.findById(req.user._id);
     const users = await User.find();
-
-    console.log(currentUser.followers);
 
     const currentFollowers = currentUser.followers.map((item) =>
       item.toString()
@@ -26,8 +24,7 @@ router.get("/follows", auth, async (req, res, next) => {
       );
     res.status(200).send(followers);
   } catch (err) {
-    res.status(400);
-    next(err);
+    res.status(400).send({ error: err.message });
   }
 });
 

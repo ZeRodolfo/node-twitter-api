@@ -7,7 +7,7 @@ const User = require("../../models/User");
 const router = new Router();
 
 // Criar usuário
-router.post("/register", async (req, res, next) => {
+router.post("/register", async (req, res) => {
   try {
     const { username, password, name, description } = req.body;
     // Verificar se username é valido
@@ -20,7 +20,6 @@ router.post("/register", async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
-    //Criar novo usuário no banco
     let user = await User.create({
       name,
       description,
@@ -36,8 +35,7 @@ router.post("/register", async (req, res, next) => {
 
     res.header("auth-token", token).send({ user, token });
   } catch (err) {
-    res.status(400);
-    next(err);
+    res.status(400).send({ error: err.message });
   }
 });
 

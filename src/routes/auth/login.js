@@ -10,7 +10,6 @@ const router = new Router();
 router.post("/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    // Verificar se username é valido
     let user = await User.findOne({ username }).select("+password");
 
     if (!user) return res.status(400).send({ error: "Username not found." });

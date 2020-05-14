@@ -7,7 +7,7 @@ const Tweet = require("../../models/Tweet");
 
 const router = new Router();
 
-// Criar tweets
+// Criar tweet
 router.post("/tweets", auth, async (req, res, next) => {
   const { content } = req.body;
 
