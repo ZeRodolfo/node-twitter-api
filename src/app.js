@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const morgan = require("morgan");
 
+const router = require("./routes");
 const middlewares = require("./middlewares");
 
 mongoose.connect(
@@ -43,6 +44,11 @@ app.use(
     origin: process.env.CORS_ORIGIN,
   })
 );
+
+/**
+ * Routes
+ */
+app.use(router);
 
 /**
  * Middlewares
