@@ -25,7 +25,7 @@ router.post("/login", async (req, res, next) => {
     
     user = await User.findOne({ username });
 
-    res.header("auth-token", token).send({ user, token });
+    res.header("access-token", token).send(user);
   } catch (err) {
     res.status(400).send({ error: err.message });
   }

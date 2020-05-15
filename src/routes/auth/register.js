@@ -20,11 +20,16 @@ router.post("/register", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
+    const avatar = "static/png/default-avatar.png";
+    const cover = "static/png/default-cover.png";
+
     let user = await User.create({
       name,
       description,
       username,
       password: hash,
+      avatar,
+      cover,
     });
 
     if (!user) return res.status(400).send({ error: "Username not created." });
@@ -33,7 +38,7 @@ router.post("/register", async (req, res) => {
 
     user = await User.findOne({ username });
 
-    res.header("auth-token", token).send({ user, token });
+    res.header("access-token", token).send(user);
   } catch (err) {
     res.status(400).send({ error: err.message });
   }

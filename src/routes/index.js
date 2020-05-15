@@ -11,6 +11,7 @@ router.use(auth.register);
 router.use(auth.login);
 router.use(profiler.update);
 router.use(profiler.tweets);
+router.use(profiler.show);
 router.use(follow.update);
 router.use(follow.listAll);
 router.use(tweet.store);
