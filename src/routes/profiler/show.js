@@ -7,8 +7,8 @@ const router = new Router();
 router.get("/profilers", async (req, res) => {
   try {
     const user = !!req.query.id
-      ? await User.findOne({ username: req.query.id }).populate("followers")
-      : await User.findOne().populate("followers").sort("-created_at");
+      ? await User.findOne({ username: req.query.id }).populate("followers").sort("-createdAt")
+      : await User.findOne().populate("followers").sort("-createdAt");
 
     if (!user) res.status(400).send({ error: "User not found." });
 
